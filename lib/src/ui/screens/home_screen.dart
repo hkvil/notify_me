@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           SearchBarComic(),
-          GridViewComic(),
+          Expanded(child: GridViewComic()),
         ],
       ),
     );

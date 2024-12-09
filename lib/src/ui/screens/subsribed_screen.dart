@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:notify_me/src/style.dart';
 import 'package:notify_me/src/ui/widgets/list_view_comic.dart';
+import 'package:notify_me/src/ui/widgets/search_bar_comic.dart';
 
 class SubsribedScreen extends StatelessWidget {
   const SubsribedScreen({super.key});
@@ -16,7 +17,12 @@ class SubsribedScreen extends StatelessWidget {
           style: titleTextStyle,
         ),
       ),
-      body: ListViewComic(),
+      body: const Column(
+        children: [
+          SearchBarComic(),
+          Expanded(child: ListViewComic()),
+        ],
+      ),
     );
   }
 }

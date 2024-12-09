@@ -30,31 +30,29 @@ class _ListViewComicState extends State<ListViewComic> {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: ListView.builder(
-        itemCount: comics.length,
-        itemBuilder: (context, index) {
-          final comic = comics[index];
-          return ListTile(
-            contentPadding: const EdgeInsets.all(8.0),
-            leading: Image.asset(
-              comic.imageUrl,
-              semanticLabel: comic.title,
-              fit: BoxFit.cover,
-              width: 50,
-              height: 50,
-            ),
-            title: Text(
-              comic.title,
-              style: titleTextStyle,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            trailing: Text('${comic.readChapter}/${comic.lastChapter}'),
-            onTap: () => navigateToComicScreen(context, comic),
-          );
-        },
-      ),
+    return ListView.builder(
+      itemCount: comics.length,
+      itemBuilder: (context, index) {
+        final comic = comics[index];
+        return ListTile(
+          contentPadding: const EdgeInsets.all(8.0),
+          leading: Image.asset(
+            comic.imageUrl,
+            semanticLabel: comic.title,
+            fit: BoxFit.cover,
+            width: 50,
+            height: 50,
+          ),
+          title: Text(
+            comic.title,
+            style: titleTextStyle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          trailing: Text('${comic.readChapter}/${comic.lastChapter}'),
+          onTap: () => navigateToComicScreen(context, comic),
+        );
+      },
     );
   }
 }
