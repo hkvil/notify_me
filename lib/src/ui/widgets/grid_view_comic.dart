@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notify_me/src/data/comic.dart';
 import 'package:notify_me/src/style.dart';
+import 'package:notify_me/src/utils.dart';
 
 //https://github.com/Baseflow/flutter_cached_network_image/issues/134
 class GridViewComic extends StatefulWidget {
@@ -43,13 +44,14 @@ class _GridViewComicState extends State<GridViewComic> {
           final comic = comics[index];
           return GridTile(
             child: InkWell(
-              onTap: () => print('Comic ${comic.title} tapped'),
+              onTap: () => navigateToComicScreen(context, comic),
               child: Stack(children: [
                 Container(
                   width: double.infinity,
                   color: Colors.red,
                   child: Image.asset(
                     comic.imageUrl,
+                    semanticLabel: comic.title,
                     fit: BoxFit.fill,
                   ),
                 ),

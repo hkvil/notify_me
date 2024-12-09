@@ -14,8 +14,7 @@ class MyApp extends StatelessWidget {
   //Screens for the bottom navigation bar
   List<Widget> _buildScreens() {
     return [
-      // const HomeScreen(),
-      const ComicScreen(),
+      const HomeScreen(),
       const SubsribedScreen(),
     ];
   }
@@ -24,17 +23,13 @@ class MyApp extends StatelessWidget {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.home),
-        title: ("Home"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
+          icon: const Icon(Icons.home),
+          title: ("Home"),
+          inactiveColorPrimary: CupertinoColors.systemGrey),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.notifications_active),
-        title: ("Subscribed"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
+          icon: const Icon(Icons.notifications_active),
+          title: ("Subscribed"),
+          inactiveColorPrimary: CupertinoColors.systemGrey),
     ];
   }
 
@@ -51,6 +46,7 @@ class MyApp extends StatelessWidget {
         controller: _controller,
         items: _navBarsItems(),
         isVisible: true,
+        navBarStyle: NavBarStyle.style1,
       ),
     );
   }
