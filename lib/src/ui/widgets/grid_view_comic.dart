@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notify_me/src/data/comic.dart';
+import 'package:notify_me/src/style.dart';
 
 //https://github.com/Baseflow/flutter_cached_network_image/issues/134
 class GridViewComic extends StatefulWidget {
@@ -60,8 +61,7 @@ class _GridViewComicState extends State<GridViewComic> {
                     color: Colors.grey[200]?.withOpacity(0.5),
                     child: Text(
                       comic.title,
-                      style: const TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold),
+                      style: titleTextStyle,
                       textAlign: TextAlign.center,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
