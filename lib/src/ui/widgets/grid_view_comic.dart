@@ -1,10 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:notify_me/src/data/comic.dart';
 
-class GridViewComic extends StatelessWidget {
+//https://github.com/Baseflow/flutter_cached_network_image/issues/134
+class GridViewComic extends StatefulWidget {
   const GridViewComic({
     super.key,
   });
+
+  @override
+  State<GridViewComic> createState() => _GridViewComicState();
+}
+
+class _GridViewComicState extends State<GridViewComic> {
+  List<Comic> comics = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchComics();
+  }
+
+  Future<void> fetchComics() async {
+    final fetchedComics = await Comic.fetchComics();
+    setState(() {
+      comics = fetchedComics;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,31 +41,35 @@ class GridViewComic extends StatelessWidget {
         itemBuilder: (context, index) {
           final comic = comics[index];
           return GridTile(
-            child: Stack(children: [
-              Container(
-                color: Colors.red,
-                child: Image.asset(
-                  comic.imageUrl,
-                  fit: BoxFit.fill,
-                ),
-              ),
-              Positioned(
-                bottom: 15,
-                left: 0,
-                right: 0,
-                child: Container(
-                  color: Colors.grey[200]?.withOpacity(0.5),
-                  child: Text(
-                    comic.title,
-                    style: const TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+            child: InkWell(
+              onTap: () => print('Comic ${comic.title} tapped'),
+              child: Stack(children: [
+                Container(
+                  width: double.infinity,
+                  color: Colors.red,
+                  child: Image.asset(
+                    comic.imageUrl,
+                    fit: BoxFit.fill,
                   ),
                 ),
-              ),
-            ]),
+                Positioned(
+                  bottom: 15,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    color: Colors.grey[200]?.withOpacity(0.5),
+                    child: Text(
+                      comic.title,
+                      style: const TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+              ]),
+            ),
           );
         },
       ),
